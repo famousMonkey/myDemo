@@ -12,6 +12,8 @@ public interface StudentService {
 
     Student update(Student student);
 
+    Integer updateDeleteById(Boolean deleted,Long id);
+
     List<Student> findAll();
 
 

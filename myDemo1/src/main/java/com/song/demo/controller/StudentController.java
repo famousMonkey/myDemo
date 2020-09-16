@@ -24,8 +24,41 @@ public class StudentController {
     }
 
     @PostMapping(path = "/save")
-    public Student save(@RequestBody Student student){
-        return studentService.save(student);
+    public ResultMsg save(@RequestBody Student student){
+        Student entity = studentService.save(student);
+        if(null!=entity){
+            return ResultMsg.SUCCESS;
+        }else{
+            return ResultMsg.FAIL;
+        }
+    }
+
+    @PutMapping(path = "/update")
+    public ResultMsg update(@RequestBody Student student){
+        Student entity = studentService.update(student);
+        if(null!=entity){
+            return ResultMsg.SUCCESS;
+        }else{
+            return ResultMsg.FAIL;
+        }
+    }
+
+
+
+    @PutMapping(path = "/update_deleted_by_id")
+    public ResultMsg updateDeleteById(@RequestParam Boolean deleted,@RequestParam Long id){
+        Integer count = studentService.updateDeleteById(deleted, id);
+        if(null!=count&&count.intValue()>0){
+            return ResultMsg.SUCCESS;
+        }else{
+            return ResultMsg.FAIL;
+        }
+    }
+
+
+    @DeleteMapping(path = "/delete")
+    public void delete(@RequestBody Student student){
+        studentService.delete(student);
     }
 
 

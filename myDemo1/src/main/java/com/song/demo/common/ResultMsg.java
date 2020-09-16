@@ -5,6 +5,8 @@ import java.util.Date;
 
 public class ResultMsg<T> {
 
+    public static final ResultMsg SUCCESS=new ResultMsg(10000,"SUCCESS");
+    public static final ResultMsg FAIL=new ResultMsg(20000,"FAIL");
 
     private Integer code;
     private String msg;
@@ -25,7 +27,12 @@ public class ResultMsg<T> {
     public ResultMsg() {
     }
 
-    public ResultMsg(Integer code, String msg,String currentDate) {
+    public ResultMsg(Integer code, String msg) {
+        this.code = code;
+        this.msg = msg;
+    }
+
+    public ResultMsg(Integer code, String msg, String currentDate) {
         this.code = code;
         this.msg = msg;
         this.currentDate=currentDate;

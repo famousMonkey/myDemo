@@ -33,6 +33,11 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public Integer updateDeleteById(Boolean deleted, Long id) {
+        return studentRepository.updateDeletedById(deleted,id);
+    }
+
+    @Override
     public List<Student> findAll() {
         Student student=new Student();
         student.setDeleted(false);
