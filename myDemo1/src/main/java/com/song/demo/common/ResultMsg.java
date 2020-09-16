@@ -13,27 +13,15 @@ public class ResultMsg<T> {
 
     private Integer code;
     private String msg;
-//    static {
-//        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//        String s = LocalDate.now().toString();
-//        try {
-//            currentDate=sdf.parse(s);
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-//    }
-    private static Date currentDate;
+    static {
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        currentDate=sdf.format(new Date());
+    }
+    private static String currentDate;
     private T data;
 
 
     public static ResultMsg successResult(Object data){
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String s = LocalDateTime.now().toString();
-        try {
-            currentDate=sdf.parse(s);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
         ResultMsg success = new ResultMsg(10000, "SUCCESS",currentDate);
         success.setData(data);
         return success;
@@ -42,13 +30,13 @@ public class ResultMsg<T> {
     public ResultMsg() {
     }
 
-    public ResultMsg(Integer code, String msg,Date currentDate) {
+    public ResultMsg(Integer code, String msg,String currentDate) {
         this.code = code;
         this.msg = msg;
         this.currentDate=currentDate;
     }
 
-    public ResultMsg(Integer code, String msg,Date currentDate, T data) {
+    public ResultMsg(Integer code, String msg,String currentDate, T data) {
         this.code = code;
         this.msg = msg;
         this.currentDate=currentDate;
@@ -71,11 +59,11 @@ public class ResultMsg<T> {
         this.msg = msg;
     }
 
-    public Date getCurrentDate() {
+    public String getCurrentDate() {
         return currentDate;
     }
 
-    public void setCurrentDate(Date currentDate) {
+    public void setCurrentDate(String currentDate) {
         this.currentDate = currentDate;
     }
 
